@@ -18,7 +18,6 @@ public class Columna {
     }
 
     public void visualizarValoresLaberinto (){
-        crearValoresHabitaciones();
         for (Fila fila: columna){
             System.out.println(" ");
             for (Habitacion habitacion : fila.getFila()){
@@ -38,6 +37,7 @@ public class Columna {
             }
         }
     }
+
 
 
 }

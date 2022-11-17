@@ -4,20 +4,21 @@ import Laberinto.*;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void lecturaDatos (){
         Scanner scanner = new Scanner(System.in);
-        Integer cantidadFilas = scanner.nextInt();
-        Integer cantidadColumnas = scanner.nextInt();
-        Integer valor = cantidadFilas * cantidadColumnas;
-
-
-        Laberinto laberinto = new Laberinto(cantidadFilas, cantidadColumnas);
-        laberinto.coneccionIndiceNodosLaberinto();
-
-        System.out.println(" ");
-        System.out.println(" ");
-        laberinto.vizualizarOrdenLaberinto();
-
+        try {
+            Integer cantidadFilas = scanner.nextInt();
+            Integer cantidadColumnas = scanner.nextInt();
+            Integer valor = cantidadFilas * cantidadColumnas;
+            Laberinto laberinto = new Laberinto(cantidadFilas, cantidadColumnas);
+            laberinto.posicionesLaberinto(valor);
+        }catch (Exception e){
+            System.out.println("Utiliza numeros");
+            lecturaDatos();
+        }
+    }
+    public static void main(String[] args) {
+        lecturaDatos();
 
     }
 

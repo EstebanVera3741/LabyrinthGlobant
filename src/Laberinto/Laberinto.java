@@ -9,7 +9,6 @@ public class Laberinto {
 
     public Laberinto (Integer cantidadFilas, Integer cantidadColumnas){
         Columna columna = new Columna(cantidadFilas, cantidadColumnas);
-        columna.visualizarValoresLaberinto();
         laberinto = columna;
     }
 
@@ -25,5 +24,22 @@ public class Laberinto {
             }
         }
     }
+
+    public void posicionesLaberinto (Integer valor){
+        Integer numeroRandom = (int) Math.round((Math.random()*((1-valor)+1)) + valor);
+        buscarSalidaRandom(numeroRandom);
+    }
+    public void buscarSalidaRandom (Integer numeroRandom){
+        laberinto.crearValoresHabitaciones();
+        for (Fila fila : laberinto.getColumna()){
+            for (Habitacion habitacion : fila.getFila()){
+                if(habitacion.getValor() == numeroRandom){
+                    habitacion.setValor(0);
+                }
+            }
+        }
+        laberinto.visualizarValoresLaberinto();
+    }
+
 
 }
