@@ -1,23 +1,24 @@
 package Laberinto;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Columna {
 
     private List<Fila> columna = new ArrayList<Fila>();
 
-    public Columna (Integer valor, Integer cantidadFila, Integer cantidadColumna) {
+    public Columna (Integer cantidadFila, Integer cantidadColumna) {
 
-        Integer valorUno = valor ;
         for (int i = 0; i < cantidadFila; i ++){
-            columna.add(new Fila(valor, cantidadColumna));
-            valorUno -= 1;
-            valor = valorUno;
+            columna.add(new Fila(cantidadColumna));
         }
     }
 
-    public void visualizar (){
+    public List<Fila> getColumna() {
+        return columna;
+    }
+
+    public void visualizarValoresLaberinto (){
+        crearValoresHabitaciones();
         for (Fila fila: columna){
             System.out.println(" ");
             for (Habitacion habitacion : fila.getFila()){
@@ -26,13 +27,17 @@ public class Columna {
         }
     }
 
-    public void visualizarParedes (){
-        for (Fila fila: columna){
-            System.out.println(" ");
+    public void crearValoresHabitaciones (){
+
+        Integer cont = 0;
+        for (Fila fila : columna){
             for (Habitacion habitacion : fila.getFila()){
-                System.out.print(habitacion.getPared() + " ");
+                cont ++;
+                cont = cont;
+                habitacion.setValor(cont);
             }
         }
     }
+
 
 }

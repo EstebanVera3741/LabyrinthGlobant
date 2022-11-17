@@ -1,47 +1,47 @@
-package Laberinto;
+package ConeccionLaberinto;
 
-public class NodoArbol {
-    private int valor;
-    private NodoArbol nodoIzquierdo, nodoDerecho;
+public class NodoPadre {
 
-    public NodoArbol (int valor){
+    private Integer valor;
+    private NodoPadre nodoIzquierdo, nodoDerecho;
+
+    public NodoPadre (Integer valor){
         this.valor = valor;
         nodoIzquierdo = null;
         nodoDerecho = null;
     }
-
     public int getValor() {
         return valor;
     }
-
-    public NodoArbol getNodoIzquierdo() {
+    public NodoPadre getNodoIzquierdo() {
         return nodoIzquierdo;
     }
 
-    public NodoArbol getNodoDerecho() {
+    public NodoPadre getNodoDerecho() {
         return nodoDerecho;
     }
-
     public void setValor(int valor) {
         this.valor = valor;
     }
-    public void insertarNuevoNodo(Integer valor){
-        if (valor < this.valor){
+
+    public void insertarNuevoNodo (Integer valor) {
+        if (valor < this.valor) {
             if (nodoIzquierdo == null){
-                nodoIzquierdo = new NodoArbol(valor);
+                nodoIzquierdo = new NodoPadre(valor);
             }
             else{
                 nodoIzquierdo.insertarNuevoNodo(valor);
             }
         }
-        else{
+        else {
             if (nodoDerecho == null){
-                nodoDerecho = new NodoArbol(valor);
+                nodoDerecho = new NodoPadre(valor);
             }
-            else {
+            else{
                 nodoDerecho.insertarNuevoNodo(valor);
             }
         }
+
     }
 
 }
