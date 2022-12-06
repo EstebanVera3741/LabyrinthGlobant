@@ -1,11 +1,15 @@
 package ConeccionLaberinto;
 
+import Laberinto.Laberinto;
+
 public class Nodos {
 
-    NodoPadre inicio;
+    private NodoPadre inicio;
+    private Laberinto laberinto;
 
-    public Nodos (){
+    public Nodos (Laberinto laberinto){
         inicio = null;
+        this.laberinto = laberinto;
     }
 
     public void insertarNuevoNodo (Integer valor){
@@ -27,7 +31,9 @@ public class Nodos {
         }
         else {
             recorrerOrdenLaberinto(nodo.getNodoIzquierdo());
-            System.out.print(nodo.getValor() + " ");
+            if (nodo.getValor() == laberinto.getNumeroSalida()){
+                System.out.println("Felicidades Solucion Laberinto");
+            }
             recorrerOrdenLaberinto(nodo.getNodoDerecho());
         }
     }

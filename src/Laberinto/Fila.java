@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Fila {
 
+
     private List<Habitacion> fila = new ArrayList<Habitacion>();
 
     public Fila (Integer cantidadColumnas) {

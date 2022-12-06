@@ -5,41 +5,40 @@ import ConeccionLaberinto.Nodos;
 public class Laberinto {
 
     private Columna laberinto;
-    Nodos nodos = new Nodos();
+
+    private Nodos nodos = new Nodos(this);
+    private Integer numeroSalida;
 
     public Laberinto (Integer cantidadFilas, Integer cantidadColumnas){
         Columna columna = new Columna(cantidadFilas, cantidadColumnas);
         laberinto = columna;
     }
-
-    public void vizualizarOrdenLaberinto (){
-        nodos.recorrerOrdenSolucionLaberinto();
-    }
-
-    public void coneccionIndiceNodosLaberinto (){
-        for (Fila fila : laberinto.getColumna()){
-            for (Habitacion habitacion : fila.getFila()){
-                Integer valor = habitacion.getValor();
-                nodos.insertarNuevoNodo(valor);
-            }
-        }
-    }
-
-    public void posicionesLaberinto (Integer valor){
-        Integer numeroRandom = (int) Math.round((Math.random()*((1-valor)+1)) + valor);
-        buscarSalidaRandom(numeroRandom);
-    }
-    public void buscarSalidaRandom (Integer numeroRandom){
+    public void vizualizarLaberinto (){
         laberinto.crearValoresHabitaciones();
-        for (Fila fila : laberinto.getColumna()){
-            for (Habitacion habitacion : fila.getFila()){
-                if(habitacion.getValor() == numeroRandom){
-                    habitacion.setValor(0);
-                }
-            }
-        }
         laberinto.visualizarValoresLaberinto();
     }
 
+    public void conexionNodos (){
+        for (Fila fila : laberinto.getColumna()){
+            for (Habitacion habitacion : fila.getFila()){
+                if (habitacion.getTipoDeHabitacion().equals("entrada")){
+                    nodos.insertarNuevoNodo(habitacion.getValor());
+                }
+                if (habitacion.getTipoDeHabitacion().equals("camino")){
+                    nodos.insertarNuevoNodo(habitacion.getValor());
+                }
+                if (habitacion.getTipoDeHabitacion().equals("salida")){
+                    nodos.insertarNuevoNodo(habitacion.getValor());
+                    numeroSalida = habitacion.getValor();
+                }
+            }
+        }
+    }
+    public void solucionarLaberinto (){
+        nodos.recorrerOrdenSolucionLaberinto();
+    }
 
+    public Integer getNumeroSalida() {
+        return numeroSalida;
+    }
 }
